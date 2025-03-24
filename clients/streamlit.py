@@ -3,7 +3,7 @@ import asyncio
 import os
 from dotenv import load_dotenv
 from mcp.client.session import ClientSession
-from mcp.client.stdio import sse_client, stdio_client, StdioServerParameters
+from mcp.client.sse import sse_client
 from mcp.types import ListToolsResult, ReadResourceResult
 import pandas as pd
 import plotly.express as px
