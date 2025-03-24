@@ -1,76 +1,65 @@
-# MCP Create Server
+# Brest MCP  Server
 
-[![PyPI](https://img.shields.io/pypi/v/create-mcp-server)](https://pypi.org/project/create-mcp-server/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+Serveurle protocole MCP (Model Context Protocol) pour la région de Brest.
 
-Create [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server projects with no build configuration.
+## Prérequis
+- **Python** : 3.12.3 ou compatible
+- **uv** : Gestionnaire de dépendances ([installation](https://docs.astral.sh/uv/getting-started/installation/))
+- **Node.js** : Pour l'inspecteur MCP via `npx`
 
-## Quick Overview
+## Quickstart
+1. **Installer uv** (si nécessaire) :
+   ```bash
+   curl -LsSf https://astral.sh/uv/install.sh | sh
+   ```
+2. **Cloner et lancer le serveur** :
+   ```bash
+   git clone https://github.com/BSE-dev/Brest-mcp-server.git
+   cd Brest-mcp-server
+   uv venv
+   source .venv/bin/activate  # Windows: .venv\Scripts\activate
+   uv sync
+   npx @modelcontextprotocol/inspector uv run brest-mcp
+   ```
+3. **Vérifier** : Ouvrez `http://localhost:5173` pour accéder à l'inspecteur MCP.
 
-```sh
-# Using uvx (recommended)
-uvx create-mcp-server
-
-# Or using pip
-pip install create-mcp-server
-create-mcp-server
+## Détails des étapes
+### 1. Cloner le dépôt
+```bash
+git clone https://github.com/BSE-dev/Brest-mcp-server.git
+cd Brest-mcp-server
 ```
 
-You don't need to install or configure any dependencies manually. The tool will set up everything you need to create an MCP server.
-
-## Creating a Server
-
-**You'll need to have [UV](https://docs.astral.sh/uv/) >= 0.4.10 installed on your machine.**
-
-To create a new server, run either of these commands:
-
-### Using uvx (recommended)
-```sh
-uvx create-mcp-server
+### 2. Créer et activer l’environnement
+```bash
+uv venv
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
 ```
 
-### Using pip
-```sh
-pip install create-mcp-server
-create-mcp-server
+### 3. Installer les dépendances
+```bash
+uv sync
 ```
 
-It will walk you through creating a new MCP server project. When complete, you'll have a new directory with this structure:
-
+### 4. Lancer le serveur
+```bash
+npx @modelcontextprotocol/inspector uv run brest-mcp
 ```
-my-server/
-├── README.md
-├── pyproject.toml
-└── src/
-    └── my_server/
-        ├── __init__.py
-        ├── __main__.py
-        └── server.py
+- Proxy sur `port 3000`.
+- Interface web : `http://localhost:5173`.
+
+Exemple de sortie :
 ```
-
-No configuration or complicated folder structures, only the files you need to run your server.
-
-Once installation is done, you can start the server:
-
-```sh
-cd my-server
-uv sync --dev --all-extras
-uv run my-server
+Starting MCP inspector...
+Proxy server listening on port 3000
+🔍 MCP Inspector is up and running at http://localhost:5173 🚀
 ```
 
-## Features
+## Résolution de problèmes
+- **Erreur `ECONNREFUSED 127.0.0.1:3001`** : Vérifiez que `brest-mcp` écoute sur le port 3001 (SSE). Assurez-vous qu’il est lancé et que le port est libre.
+- **Dépendances corrompues** : Supprimez `.venv` et `uv.lock`, puis relancez `uv venv` et `uv sync`.
 
-- Simple command-line interface for creating new projects
-- Auto-configures Claude Desktop app integration when available
-- Uses [uvx](https://docs.astral.sh/uv/guides/tools/) for fast, reliable package management and project creation
-- Sets up basic MCP server structure
-- Uses the [Model Context Protocol Python SDK](https://github.com/modelcontextprotocol/python-sdk) for the server project
-
-## Philosophy
-
-- **Zero Configuration:** No need to manually set up project structure or dependencies.
-- **Best Practices:** Follows Python packaging standards and MCP server patterns.
-- **Batteries Included:** Comes with everything needed to start building an MCP server.
-
-## License
-
-Create MCP Server is open source software [licensed as MIT](https://opensource.org/licenses/MIT).
+## Notes
+- Activez l’environnement avant de lancer le serveur pour utiliser les bonnes dépendances.
+- Consultez `pyproject.toml` pour les dépendances spécifiques.
+```
