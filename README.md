@@ -27,7 +27,7 @@ Serveurle protocole MCP (Model Context Protocol) pour la région de Brest.
 ### 1. Cloner le dépôt
 ```bash
 git clone https://github.com/BSE-dev/Brest-mcp-server.git
-cd Brest-mcp-server
+cd Brest-mcp-server/brest_mcp
 ```
 
 ### 2. Créer et activer l’environnement
