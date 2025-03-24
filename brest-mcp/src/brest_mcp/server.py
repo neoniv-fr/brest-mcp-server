@@ -66,16 +66,19 @@ def _fetch_feed(feed_type: str) -> Optional[gtfs_realtime_pb2.FeedMessage]:
 # Configuration des URLs GTFS-RT pour différents réseaux bretons
 NETWORK_URLS = {
     "bibus": {
-        "vehicle_positions": "https://proxy.transport.data.gouv.fr/resource/bibus-brest-gtfs-rt-vehicle-position",
-        "trip_updates": "https://proxy.transport.data.gouv.fr/resource/bibus-brest-gtfs-rt-trip-update",
-        "service_alerts": "https://proxy.transport.data.gouv.fr/resource/bibus-brest-gtfs-rt-alerts"
+        "vehicle_positions": os.getenv("GTFS_VEHICLE_POSITIONS_URL", "https://proxy.transport.data.gouv.fr/resource/bibus-brest-gtfs-rt-vehicle-position"),
+        "trip_updates": os.getenv("GTFS_TRIP_UPDATES_URL", "https://proxy.transport.data.gouv.fr/resource/bibus-brest-gtfs-rt-trip-update"),
+        "service_alerts": os.getenv("GTFS_SERVICE_ALERTS_URL", "https://proxy.transport.data.gouv.fr/resource/bibus-brest-gtfs-rt-alerts"),
+        "gtfs_static": os.getenv("GTFS_STATIC_URL", "https://s3.eu-west-1.amazonaws.com/files.orchestra.ratpdev.com/networks/bibus/exports/medias.zip"),
+        "open_agenda": os.getenv("OPEN_AGENDA_URL", "https://api.openagenda.com/v2/events?search=brest&limit=10&key=cf7141c803f746f0abec6bb1667d55e2"),
+        "weather_infoclimat": os.getenv("WEATHER_INFOCLIMAT_URL", "https://www.infoclimat.fr/public-api/gfs/json?_ll=48.4475,-4.4181&_auth=ARtTRAV7ByVec1FmAnRVfFU9BzIMegIlVCgDYA1oVyoDaFIzVTVcOlE%2FBnsHKFZgBypXNFphU2MCaVAoD31RMAFrUz8FbgdgXjFRNAItVX5VewdmDCwCJVQ1A2QNflc9A2dSKFU3XDZRNwZ6Bz5WZAcrVyhaZFNsAmVQNQ9nUTYBZFM1BWYHbV4uUSwCNFVmVTIHMwwxAj9UNQNkDWRXNwNgUmBVN1w3USAGZwc%2BVmcHPVc2Wm1TbwJkUCgPfVFLARFTKgUmBydeZFF1Ai9VNFU4BzM%3D&_c=38fc48e42684d2b24279d0b02e2d0713")
     },
-    "star": {  # Rennes
+    "star": {
         "vehicle_positions": "https://proxy.transport.data.gouv.fr/resource/star-rennes-gtfs-rt-vehicle-position",
         "trip_updates": "https://proxy.transport.data.gouv.fr/resource/star-rennes-gtfs-rt-trip-update",
         "service_alerts": "https://proxy.transport.data.gouv.fr/resource/star-rennes-gtfs-rt-alerts"
     },
-    "tub": {  # Saint-Brieuc
+    "tub": {
         "vehicle_positions": "https://proxy.transport.data.gouv.fr/resource/tub-saint-brieuc-gtfs-rt-vehicle-position",
         "trip_updates": "https://proxy.transport.data.gouv.fr/resource/tub-saint-brieuc-gtfs-rt-trip-update",
         "service_alerts": "https://proxy.transport.data.gouv.fr/resource/tub-saint-brieuc-gtfs-rt-alerts"
