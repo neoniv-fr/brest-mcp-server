@@ -31,7 +31,7 @@ powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | ie
 ### 1. Cloner le dépôt
 ```bash
 git clone https://github.com/BSE-dev/Brest-mcp-server.git
-cd Brest-mcp-server/brest_mcp
+cd Brest-mcp-server/brest-mcp
 ```
 
 ### 2. Créer et activer l’environnement
