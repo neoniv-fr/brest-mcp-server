@@ -30,7 +30,12 @@ logging.basicConfig(
 )
 
 # Initialiser le serveur MCP avec le nom et les paramètres réseau spécifiés
-mcp = FastMCP("Brest-MCP-Server", host=HOST, port=PORT)
+mcp = FastMCP("Brest-MCP-Server",
+                host=HOST, 
+                port=PORT,
+                sse_path = "/sse",
+                message_path = "/messages/",
+               )
 
 # Cache en mémoire pour les données GTFS-RT avec timestamps
 _cache = {
@@ -630,7 +635,7 @@ def _get_network_feed(network: str, feed_type: str) -> Optional[gtfs_realtime_pb
         return None
 
 if __name__ == "__main__":
-    transport = os.getenv("MCP_TRANSPORT", "stdio")
+    transport = os.getenv("MCP_TRANSPORT", "sse")
     if transport == "tcp":
         logging.info("Transport 'tcp' non supporté, utilisation de 'sse' à la place.")
         transport = "sse"
