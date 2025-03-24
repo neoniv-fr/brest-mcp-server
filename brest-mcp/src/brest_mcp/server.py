@@ -16,7 +16,7 @@ TRIP_UPDATES_URL = os.getenv("GTFS_TRIP_UPDATES_URL")
 SERVICE_ALERTS_URL = os.getenv("GTFS_SERVICE_ALERTS_URL")
 REFRESH_INTERVAL = int(os.getenv("GTFS_REFRESH_INTERVAL", "30"))
 HOST = os.getenv("MCP_HOST", "localhost")
-PORT = int(os.getenv("MCP_PORT", "0"))
+PORT = int(os.getenv("MCP_PORT", "3001"))
 
 # Initialiser le serveur MCP avec le nom et les paramètres réseau spécifiés
 mcp = FastMCP("TransitServer", host=HOST, port=PORT)
