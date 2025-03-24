@@ -12,6 +12,10 @@ Serveurle protocole MCP (Model Context Protocol) pour la région de Brest.
    ```bash
    curl -LsSf https://astral.sh/uv/install.sh | sh
    ```
+Windows version 
+   ```bash
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+   ```
 2. **Cloner et lancer le serveur** :
    ```bash
    git clone https://github.com/BSE-dev/Brest-mcp-server.git
