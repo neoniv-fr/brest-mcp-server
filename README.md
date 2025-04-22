@@ -18,8 +18,8 @@ powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | ie
    ```
 2. **Cloner et lancer le serveur** :
    ```bash
-   git clone https://github.com/BSE-dev/Brest-mcp-server.git
-   cd Brest-mcp-server/brest-mcp
+   git clone https://github.com/Nijal-AI/Brest-mcp-server.git
+   cd Brest-mcp-server
    uv venv
    source .venv/bin/activate  # Windows: .venv\Scripts\activate
    uv sync
@@ -30,7 +30,7 @@ powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | ie
 ## Détails des étapes
 ### 1. Cloner le dépôt
 ```bash
-git clone https://github.com/BSE-dev/Brest-mcp-server.git
+git clone https://github.com/Nijal-AI/Brest-mcp-server.git
 
 cd Brest-mcp-server
 ```

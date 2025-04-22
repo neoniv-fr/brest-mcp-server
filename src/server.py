@@ -109,6 +109,20 @@ def _fetch_feed(feed_type: str, is_json: bool = False, is_static: bool = False) 
         logging.error(f"Error fetching {feed_type}: {str(e)}")
         return cache["data"] if cache["data"] else None
 
+def _fetch_geographic_data() -> Optional[Dict]:
+    """Récupère les données géographiques de la ville de Brest."""
+    GEO_DATA_URL = "https://geo.brest-metropole.fr/portal/apps/sites/#/geopaysdebrest/pages/donnees"
+    try:
+        logging.info(f"Fetching geographic data from {GEO_DATA_URL}")
+        response = requests.get(GEO_DATA_URL, timeout=10)
+        response.raise_for_status()
+        data = response.json()  # Assurez-vous que l'API retourne du JSON
+        logging.info(f"Successfully fetched geographic data with {len(data)} entries")
+        return data
+    except Exception as e:
+        logging.error(f"Error fetching geographic data: {str(e)}")
+        return None
+
 def _get_vehicle_positions_data() -> List[Dict]:
     """Récupère les positions de tous les véhicules."""
     feed = _fetch_feed("vehicle_positions")
@@ -574,6 +588,23 @@ def network_health_resource() -> Dict:
             "average_delay": stats["averageDelay"],
             "timestamp": datetime.now().isoformat()
         }
+    }
+
+@mcp.resource("geo://brest")
+def geographic_data_resource() -> Dict:
+    """Ressource pour les données géographiques de Brest."""
+    data = _fetch_geographic_data()
+    if data:
+        return {
+            "status": "success",
+            "data": data,
+            "count": len(data),
+            "timestamp": datetime.now().isoformat()
+        }
+    return {
+        "status": "error",
+        "message": "Unable to fetch geographic data",
+        "timestamp": datetime.now().isoformat()
     }
 
 # Fonctions utilitaires
