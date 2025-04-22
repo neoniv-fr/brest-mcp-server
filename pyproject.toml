@@ -28,7 +28,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project.scripts]
-brest-mcp = "brest_mcp:main"
+brest-mcp = "src:main"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/brest_mcp"]
+packages = ["src"]
