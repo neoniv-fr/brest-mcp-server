@@ -1,69 +1,107 @@
-# Brest MCP  Server
+# Brest MCP Server
 
-Serveurle protocole MCP (Model Context Protocol) pour la région de Brest.
+## Table of Contents
+- [Description](#description)
+- [Technologies](#technologies)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Development](#development)
+- [Troubleshooting](#troubleshooting)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Prérequis
-- **Python** : 3.12.3 ou compatible
-- **uv** : Gestionnaire de dépendances ([installation](https://docs.astral.sh/uv/getting-started/installation/))
-- **Node.js** : Pour l'inspecteur MCP via `npx`
+## Description
+**Brest MCP Server** is a server implementation of the Model Context Protocol (MCP) for the Brest region. It provides a robust infrastructure for managing MCP-based interactions and includes an MCP inspector for debugging and monitoring.
 
-## Quickstart
-1. **Installer uv** (si nécessaire) :
-   ```bash
-   curl -LsSf https://astral.sh/uv/install.sh | sh
-   ```
-Windows version 
-   ```bash
-powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
-   ```
-2. **Cloner et lancer le serveur** :
-   ```bash
-   git clone https://github.com/Nijal-AI/Brest-mcp-server.git
-   cd Brest-mcp-server
-   uv venv
-   source .venv/bin/activate  # Windows: .venv\Scripts\activate
-   uv sync
-   npx @modelcontextprotocol/inspector uv run brest-mcp
-   ```
-3. **Vérifier** : Ouvrez `http://localhost:5173` pour accéder à l'inspecteur MCP.
+The goal of this project is to facilitate the deployment and management of MCP services with a focus on simplicity and reliability.
 
-## Détails des étapes
-### 1. Cloner le dépôt
-```bash
-git clone https://github.com/Nijal-AI/Brest-mcp-server.git
+## Technologies
+- **Language**: Python 3.12.3 or compatible
+- **Dependency Management**: uv
+- **Inspector**: MCP Inspector via Node.js (`npx`)
+- **Environment**: Virtual environment managed by `uv`
+- **Inspector**: MCP Inspector via Node.js (`npx`)
+- **Node.js** : Pour l'inspecteur MCP
+## Installation
+To install and configure Brest MCP Server locally, follow these steps:
 
-cd Brest-mcp-server
-```
-### 2. Créer et activer l’environnement
-```bash
-uv venv
-source .venv/bin/activate  # Windows: .venv\Scripts\activate
-```
+1. Install `uv` (if not already installed):
+    - On Linux/macOS:
+        ```bash
+        curl -LsSf https://astral.sh/uv/install.sh | sh
+        ```
+    - On Windows:
+        ```bash
+        powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+        ```
 
-### 3. Installer les dépendances
-```bash
-uv sync
-```
+2. Clone the repository:
+    ```bash
+    git clone https://github.com/Nijal-AI/Brest-mcp-server.git
+    cd Brest-mcp-server
+    ```
 
-### 4. Lancer le serveur
-```bash
-npx @modelcontextprotocol/inspector uv run brest-mcp
-```
-- Proxy sur `port 3000`.
-- Interface web : `http://localhost:5173`.
+3. Create and activate the virtual environment:
+    ```bash
+    uv venv
+    source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+    ```
 
-Exemple de sortie :
+4. Install the dependencies:
+    ```bash
+    uv sync
+    ```
+
+## Usage
+To run the server locally, proceed as follows:
+
+1. Ensure the virtual environment is activated:
+    ```bash
+    source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+    ```
+
+2. Start the server with the MCP Inspector:
+    ```bash
+    npx @modelcontextprotocol/inspector uv run brest-mcp
+    ```
+
+3. Access the MCP Inspector in your browser:
+    - Proxy: `http://localhost:3000`
+    - Web interface: `http://localhost:5173`
+
+Example output:
 ```
 Starting MCP inspector...
 Proxy server listening on port 3000
 🔍 MCP Inspector is up and running at http://localhost:5173 🚀
 ```
 
-## Résolution de problèmes
-- **Erreur `ECONNREFUSED 127.0.0.1:3001`** : Vérifiez que `brest-mcp` écoute sur le port 3001 (SSE). Assurez-vous qu’il est lancé et que le port est libre.
-- **Dépendances corrompues** : Supprimez `.venv` et `uv.lock`, puis relancez `uv venv` et `uv sync`.
+## Development
+For developers wishing to contribute or work on advanced features, follow these additional steps:
 
-## Notes
-- Activez l’environnement avant de lancer le serveur pour utiliser les bonnes dépendances.
-- Consultez `pyproject.toml` pour les dépendances spécifiques.
-```
+1. Ensure the virtual environment is set up and dependencies are installed:
+    ```bash
+    uv venv
+    uv sync
+    ```
+
+2. Use the MCP Inspector to debug and monitor the server:
+    ```bash
+    npx @modelcontextprotocol/inspector uv run brest-mcp
+    ```
+
+3. Refer to the `pyproject.toml` file for details on dependencies and configurations.
+
+## Troubleshooting
+- **Error `ECONNREFUSED 127.0.0.1:3001`**: Ensure that `brest-mcp` is running and listening on port 3001 (SSE). Verify that the port is not in use by another process.
+- **Corrupted dependencies**: Delete the `.venv` folder and `uv.lock` file, then recreate the environment:
+    ```bash
+    uv venv
+    uv sync
+    ```
+
+## Contributing
+Contributions are welcome! To propose changes, follow the [CONTRIBUTING.md](CONTRIBUTING.md) file.
+
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
