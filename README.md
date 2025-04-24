@@ -5,8 +5,8 @@
 - [Technologies](#technologies)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Tools](#tools)
 - [Development](#development)
-- [Troubleshooting](#troubleshooting)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -75,6 +75,11 @@ Starting MCP inspector...
 Proxy server listening on port 3000
 🔍 MCP Inspector is up and running at http://localhost:5173 🚀
 ```
+## Tools
+If you want to discut with an AI agent using the Brest MCP Server, you can use the client provided in the `tools` directory. 
+    ```bash
+    uv run python tools/client.py src/server.py
+    ```
 
 ## Development
 For developers wishing to contribute or work on advanced features, follow these additional steps:
@@ -91,14 +96,6 @@ For developers wishing to contribute or work on advanced features, follow these 
     ```
 
 3. Refer to the `pyproject.toml` file for details on dependencies and configurations.
-
-## Troubleshooting
-- **Error `ECONNREFUSED 127.0.0.1:3001`**: Ensure that `brest-mcp` is running and listening on port 3001 (SSE). Verify that the port is not in use by another process.
-- **Corrupted dependencies**: Delete the `.venv` folder and `uv.lock` file, then recreate the environment:
-    ```bash
-    uv venv
-    uv sync
-    ```
 
 ## Contributing
 Contributions are welcome! To propose changes, follow the [CONTRIBUTING.md](CONTRIBUTING.md) file.

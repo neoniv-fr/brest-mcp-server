@@ -179,7 +179,7 @@ def _get_service_alerts_data() -> List[Dict]:
 
 
 def _parse_vehicle_positions(feed: gtfs_realtime_pb2.FeedMessage) -> List[Dict]:
-    """Transforme un FeedMessage de positions véhicules en une liste de dictionnaires."""
+    """Transforme un FeedMessage de positions véhicules en une liste de dictionaires."""
     data = []
     for entity in feed.entity:
         if not entity.HasField("vehicle"):
@@ -357,7 +357,7 @@ def get_trip_updates():
     }
 
 
-@mcp.tool("get_alerts")
+@mcp.tool("get_service_alerts")
 def get_service_alerts():
     """Charge et retourne toutes les alertes de service actives en temps réel."""
     return {
@@ -389,7 +389,7 @@ def get_weather_forecast():
     }
 
 
-@mcp.tool()
+@mcp.tool("get_vehicle")
 def get_vehicle(vehicle_id: str):
     """Retourne les informations du véhicule spécifié par son identifiant."""
     vehicles = _get_vehicle_positions_data()
@@ -399,7 +399,7 @@ def get_vehicle(vehicle_id: str):
     return None
 
 
-@mcp.tool()
+@mcp.tool("get_trip_update")
 def get_trip_update(trip_id: str):
     """Retourne les informations de mise à jour du trajet spécifié."""
     trips = _get_trip_updates_data()
@@ -409,7 +409,7 @@ def get_trip_update(trip_id: str):
     return None
 
 
-@mcp.tool()
+@mcp.tool("get_alert")
 def get_alert(alert_id: str):
     """Retourne les détails de l'alerte de service spécifiée."""
     alerts = _get_service_alerts_data()
@@ -419,21 +419,21 @@ def get_alert(alert_id: str):
     return None
 
 
-@mcp.tool()
+@mcp.tool("count_vehicles")
 def count_vehicles():
     """Retourne le nombre de véhicules actuellement suivis."""
     vehicles = _get_vehicle_positions_data()
     return len(vehicles)
 
 
-@mcp.tool()
+@mcp.tool("count_alerts")
 def count_alerts():
     """Retourne le nombre d'alertes de service actives."""
     alerts = _get_service_alerts_data()
     return len(alerts)
 
 
-@mcp.tool()
+@mcp.tool("count_events")
 def count_events():
     """Retourne le nombre d'événements Open Agenda disponibles."""
     data = _fetch_feed("open_agenda", is_json=True)
@@ -441,14 +441,14 @@ def count_events():
     return len(events)
 
 
-@mcp.tool()
+@mcp.tool("find_trips_by_route")
 def find_trips_by_route(route_id: str):
     """Liste les identifiants des trajets en cours pour la ligne donnée."""
     trips = _get_trip_updates_data()
     return [t["trip_id"] for t in trips if t.get("route_id") == route_id]
 
 
-@mcp.tool()
+@mcp.tool("find_vehicles_by_route")
 def find_vehicles_by_route(route_id: str) -> List[Dict]:
     """Trouve tous les véhicules sur une ligne spécifique."""
     vehicles = []
@@ -488,7 +488,7 @@ def find_vehicles_by_route(route_id: str) -> List[Dict]:
     return vehicles
 
 
-@mcp.tool()
+@mcp.tool("find_alerts_by_route")
 def find_alerts_by_route(route_id: str) -> List[Dict]:
     """Trouve toutes les alertes pour une ligne spécifique."""
     alerts = []
@@ -525,7 +525,7 @@ def find_alerts_by_route(route_id: str) -> List[Dict]:
     return alerts
 
 
-@mcp.tool()
+@mcp.tool("find_events_by_date")
 def find_events_by_date(date: str):
     """Filtre les événements Open Agenda par date (format YYYY-MM-DD)."""
     data = _fetch_feed("open_agenda", is_json=True)
@@ -533,7 +533,7 @@ def find_events_by_date(date: str):
     return [e for e in events if e.get("start_time", "").startswith(date)]
 
 
-@mcp.tool()
+@mcp.tool("get_weather_by_timestamp")
 def get_weather_by_timestamp(timestamp: str):
     """Récupère les prévisions météo pour un timestamp spécifique (format ISO)."""
     data = _fetch_feed("weather_infoclimat", is_json=True)
@@ -541,7 +541,7 @@ def get_weather_by_timestamp(timestamp: str):
     return forecasts.get(timestamp, None)
 
 
-@mcp.tool()
+@mcp.tool("get_route_delays")
 def get_route_delays(route_id: str) -> Dict:
     """Calcule les statistiques de retard pour une ligne spécifique."""
     trips = _get_trip_updates_data()

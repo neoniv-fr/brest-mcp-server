@@ -17,7 +17,8 @@ dependencies = [
     "plotly-express>=0.4.1",
     "streamlit-folium>=0.18.0",
     "streamlit>=1.32.0",
-    "ollama>=0.1.6"
+    "ollama>=0.1.6",
+    "anthropic>=0.50.0",
 ]
 [[project.authors]]
 name = "Artemis-IA"
