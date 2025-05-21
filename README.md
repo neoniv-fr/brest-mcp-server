@@ -76,22 +76,22 @@ Proxy server listening on port 3000
 🔍 MCP Inspector is up and running at http://localhost:5173 🚀
 ```
 ## Tools
-If you want to discut with an AI agent using the Brest MCP Server, you can use the client provided in the `tools` directory. 
-    ```bash
-    uv run python tools/client.py src/server.py
-    ```
+If you want to discut with an AI agent using the Brest MCP Server, you can use the client provided in the `tools` directory :
+```bash
+uv run python tools/client.py src/server.py
+```
 
 ## Development
 For developers wishing to contribute or work on advanced features, follow these additional steps:
 
 1. Ensure the virtual environment is set up and dependencies are installed:
-    ```bash
+    ``` bash
     uv venv
     uv sync
     ```
 
 2. Use the MCP Inspector to debug and monitor the server:
-    ```bash
+    ``` bash
     npx @modelcontextprotocol/inspector uv run brest-mcp
     ```
 
